@@ -1,8 +1,6 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
@@ -15,18 +13,12 @@ public class ParametersTest {
 
     private WebDriver driver;
 
-    @BeforeAll
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
-    }
-
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{{System.getProperty("browser")}});
     }
 
     private void getDriverByBrowserType(String browserType) {
-        driver = WebDriverFactory.create(browserType.toLowerCase());
+        driver = WebDriverFactory.create(browserType);
     }
 
     @AfterEach
